@@ -4,7 +4,7 @@ using RPG.Core;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
         Transform target;
@@ -13,15 +13,15 @@ namespace RPG.Combat
         {
             if (target == null) return;
 
-            // move only if there is a target AND it is NOT within range
-            if (target != null && !GetIsInRange())
+            // move only if a target is NOT within range
+           if (!GetIsInRange())
             {
                 GetComponent<Mover>().MoveTo(target.position);
             }
             else
             {
-                GetComponent<Mover>().Stop();
-            }
+                GetComponent<Mover>().Cancel();
+            } 
         }
 
         private bool GetIsInRange()
