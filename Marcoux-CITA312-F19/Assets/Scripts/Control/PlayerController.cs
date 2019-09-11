@@ -22,7 +22,10 @@ namespace RPG.Control
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
                 // if the target is null, skip the rest of the statements in this foreach loop
-                if (target == null) continue;
+                if (!GetComponent<Fighter>().CanAttack(target))
+                {
+                    continue; // continue to the next section of the foreach loop
+                }
                 if (Input.GetMouseButtonDown(0))
                 {
                     GetComponent<Fighter>().Attack(target);
