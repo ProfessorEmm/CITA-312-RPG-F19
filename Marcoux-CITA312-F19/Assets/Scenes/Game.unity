@@ -136,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 6097114987158654920, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.423
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 6097114987158654920, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
@@ -146,7 +146,7 @@ PrefabInstance:
     - target: {fileID: 6097114987158654920, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.139
+      value: 4.07
       objectReference: {fileID: 0}
     - target: {fileID: 6097114987158654920, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
@@ -837,7 +837,7 @@ PrefabInstance:
     - target: {fileID: 6097114987158654920, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.423
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: 6097114987158654920, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
@@ -847,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 6097114987158654920, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.246803
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 6097114987158654920, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
@@ -1182,7 +1182,7 @@ PrefabInstance:
     - target: {fileID: 4512379436861404519, guid: 46710f909c25cfc468e0b0c273c9b0a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 4512379436861404519, guid: 46710f909c25cfc468e0b0c273c9b0a8,
         type: 3}
@@ -1233,6 +1233,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096964525770189783, guid: 46710f909c25cfc468e0b0c273c9b0a8,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46710f909c25cfc468e0b0c273c9b0a8, type: 3}
