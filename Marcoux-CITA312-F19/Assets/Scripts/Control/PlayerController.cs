@@ -21,14 +21,17 @@ namespace RPG.Control
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
+                if (target == null) continue;
+
+                GameObject targetGameObject = target.gameObject;
                 // if the target is null, skip the rest of the statements in this foreach loop
-                if (!GetComponent<Fighter>().CanAttack(target))
+                if (!GetComponent<Fighter>().CanAttack(target.gameObject))
                 {
                     continue; // continue to the next section of the foreach loop
                 }
                 if (Input.GetMouseButtonDown(0))
                 {
-                    GetComponent<Fighter>().Attack(target);
+                    GetComponent<Fighter>().Attack(target.gameObject);
                 }
                 return true;
             }
