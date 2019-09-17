@@ -14,6 +14,7 @@ namespace RPG.Control
         [SerializeField] float suspicionTime = 3f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
+        [SerializeField] float waypointDwellTime = 3f;
 
         // cached variables
         Fighter fighter;
@@ -23,6 +24,7 @@ namespace RPG.Control
 
         Vector3 guardPosition;
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        float timeSinceArrivedAtLastWaypoint = Mathf.Infinity;
         int currentWaypointIndex = 0;
 
         private void Start()
@@ -42,11 +44,11 @@ namespace RPG.Control
             {
                 return;
             }
-            
+
             // launch attack behavior if in range and fighter can attack
             if (InAttackRangeOfPlayer() && fighter.CanAttack(player))
             {
-                timeSinceLastSawPlayer = 0;
+                
                 AttackBehavior();
             }
             else if (timeSinceLastSawPlayer < suspicionTime)
@@ -59,8 +61,14 @@ namespace RPG.Control
                 PatrolBehavior();
             }
 
-            timeSinceLastSawPlayer += Time.deltaTime;
+            UpdateTimers();
         } // Update
+
+        private void UpdateTimers()
+        {
+            timeSinceLastSawPlayer += Time.deltaTime;
+            timeSinceArrivedAtLastWaypoint += Time.deltaTime;
+        }
 
         private void PatrolBehavior()
         {
@@ -70,13 +78,18 @@ namespace RPG.Control
             {
                 if (AtWaypoint())
                 {
+                    timeSinceArrivedAtLastWaypoint = 0;
                     CycleWaypoint();
                 }
                 nextPosition = GetCurrentWaypoint();
             }
 
-            mover.StartMoveAction(nextPosition);
-        }
+            if (timeSinceArrivedAtLastWaypoint > waypointDwellTime)
+            {
+                mover.StartMoveAction(nextPosition);
+            }
+            
+        } // PatrolBehavior()
 
         private Vector3 GetCurrentWaypoint()
         {
@@ -101,6 +114,7 @@ namespace RPG.Control
 
         private void AttackBehavior()
         {
+            timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
         }
 
