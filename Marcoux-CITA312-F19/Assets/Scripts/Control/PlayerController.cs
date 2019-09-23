@@ -53,7 +53,9 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().StartMoveAction(hit.point);
+                    // we are including the speed for both the player and enemy and we always want our
+                    // player to be moving at maximum speed, therefore we multiply the maximum speed by 1f
+                    GetComponent<Mover>().StartMoveAction(hit.point, 1f);
                 }
                 return true;
             }
