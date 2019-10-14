@@ -13,6 +13,7 @@ namespace RPG.SceneManagement
             if (other.tag == "Player")
             {
                 SceneManager.LoadScene(sceneToLoad);
+                print("Yes");
             }
         }
     }
