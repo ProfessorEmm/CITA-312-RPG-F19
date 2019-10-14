@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 namespace RPG.SceneManagement
 {
@@ -33,22 +34,24 @@ namespace RPG.SceneManagement
         private void UpdatePlayer(Portal otherPortal)
         {
             GameObject player = GameObject.FindWithTag("Player");
-            player.transform.position = otherPortal.spawnPoint.position;
+            player.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);
             player.transform.rotation = otherPortal.spawnPoint.rotation;
-
         }
 
         private Portal GetOtherPortal()
         {
            foreach (Portal portal in FindObjectsOfType<Portal>())
             {
-                if (portal == this) continue;
+                if (portal == this)
+                {
+                    continue;
+                }
 
                 return portal;
             }
 
-            return null;
+            return null; // couldn't find a portal
 
-        }
-    }
-}
+        } // GetOtherPortal()
+    } // class Portal
+} // namespace
