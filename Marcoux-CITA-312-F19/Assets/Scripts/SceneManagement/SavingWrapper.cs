@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using RPG.Saving;
-using System;
 
 namespace RPG.SceneManagement
 {
@@ -20,13 +19,13 @@ namespace RPG.SceneManagement
             }
         }
 
-        private void Save()
+        public void Save()
         {
             // call to the Saving System and tell it to Save
             GetComponent<SavingSystem>().Save(defaultSaveFile);
         }
 
-        private void Load()
+        public void Load()
         {
             // call to the Saving System and tell it to Load
             GetComponent<SavingSystem>().Load(defaultSaveFile);
