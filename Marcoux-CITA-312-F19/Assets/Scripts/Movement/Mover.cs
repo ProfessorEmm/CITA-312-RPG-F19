@@ -1,4 +1,6 @@
 ﻿using RPG.Core;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Saving;
@@ -21,19 +23,15 @@ namespace RPG.Movement
 
         void Update()
         {
-            // disable navMeshAgent as soon as the AI is dead
             navMeshAgent.enabled = !health.IsDead();
             UpdateAnimator();
-        } // Update
+        }
 
         public void StartMoveAction(Vector3 destination, float speedFraction)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            
             MoveTo(destination, speedFraction);
         }
-
-
 
         public void MoveTo(Vector3 destination, float speedFraction)
         {
@@ -47,15 +45,19 @@ namespace RPG.Movement
             navMeshAgent.isStopped = true;
         }
 
-        
+        //public void cancel()
+        //{
+        //    target = null;
+        //}
+
+
         private void UpdateAnimator()
         {
-            // get velocity from NavMeshAgent
             Vector3 velocity = navMeshAgent.velocity;
-            // transform the direction to be a local velocity
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
             float speed = localVelocity.z;
-            GetComponent<Animator>().SetFloat("forwardSpeed", speed);
+            GetComponent<Animator>().SetFloat("ForwardSpeed", speed);
+
         }
 
         public object CaptureState()
@@ -65,14 +67,12 @@ namespace RPG.Movement
 
         public void RestoreState(object state)
         {
-            // cast state as a SerializableVector3
             SerializableVector3 position = (SerializableVector3)state;
-            // disable NavMeshAgent so that it doesn't meddle with 
-            // our position while we're trying to change it
             GetComponent<NavMeshAgent>().enabled = false;
-            transform.position =  position.ToVector();
-            // enable the NavMeshAgent 
+            transform.position = position.ToVector();
             GetComponent<NavMeshAgent>().enabled = true;
         }
-    } // class Mover
-} // namespace
+    }
+
+}
+

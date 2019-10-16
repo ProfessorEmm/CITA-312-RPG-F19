@@ -11,23 +11,21 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 5f;
 
         Health target;
-        float timeSinceLastAttack = Mathf.Infinity;
+        float timeSinceLastAttack = 0;
 
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;
-
-            // stop attacking the target if they are dead
             if (target.IsDead()) return;
 
-            // move only if a target is NOT within range
-           if (!GetIsInRange())
+
+            if (!GetIsInRange())
             {
                 GetComponent<Mover>().MoveTo(target.transform.position, 1f);
             }
-            else // in range, attack!
+            else
             {
                 GetComponent<Mover>().Cancel();
                 AttackBehavior();
@@ -36,16 +34,14 @@ namespace RPG.Combat
 
         private void AttackBehavior()
         {
-            // look at our traget 
             transform.LookAt(target.transform);
-
             if (timeSinceLastAttack > timeBetweenAttacks)
             {
-                // This will trigger the Hit() event
+                // This will trigger the Hit() event.
                 TriggerAttack();
-                timeSinceLastAttack = 0f;
-            }
+                timeSinceLastAttack = Mathf.Infinity;
 
+            }
         }
 
         private void TriggerAttack()
@@ -54,13 +50,10 @@ namespace RPG.Combat
             GetComponent<Animator>().SetTrigger("attack");
         }
 
-        // this is an animation event
+        //animation event
         void Hit()
         {
-            if (target == null)
-            {
-                return;
-            }
+            if(target == null) { return; }
             target.TakeDamage(weaponDamage);
         }
 
@@ -71,10 +64,7 @@ namespace RPG.Combat
 
         public bool CanAttack(GameObject combatTarget)
         {
-            if (combatTarget == null)
-            {
-                return false;
-            }
+            if (combatTarget == null) { return false;  } 
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
@@ -97,5 +87,5 @@ namespace RPG.Combat
             GetComponent<Animator>().ResetTrigger("attack");
             GetComponent<Animator>().SetTrigger("stopAttack");
         }
-    } // class Fighter
-} // namespace
+    }
+}

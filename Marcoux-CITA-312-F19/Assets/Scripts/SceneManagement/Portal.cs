@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
@@ -21,6 +20,7 @@ namespace RPG.SceneManagement
         [SerializeField] float fadeInTime = 2f;
         [SerializeField] float fadeWaitTime = 0.5f;
 
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.tag == "Player")
@@ -37,28 +37,24 @@ namespace RPG.SceneManagement
                 yield break;
             }
 
+
             DontDestroyOnLoad(gameObject);
 
             Fader fader = FindObjectOfType<Fader>();
 
             yield return fader.FadeOut(fadeOutTime);
 
-            // save current level
             SavingWrapper wrapper = FindObjectOfType<SavingWrapper>();
             wrapper.Save();
 
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
-            // a solution designed by Will Norton to solve
-            // an error regarding a MissingReferenceException for SavingWrapper
-            wrapper = FindObjectOfType<SavingWrapper>();
-
-            // load current level
             wrapper.Load();
 
-            // move the player
             Portal otherPortal = GetOtherPortal();
             UpdatePlayer(otherPortal);
+
+            wrapper.Save();
 
             yield return new WaitForSeconds(fadeWaitTime);
             yield return fader.FadeIn(fadeInTime);
@@ -77,23 +73,16 @@ namespace RPG.SceneManagement
 
         private Portal GetOtherPortal()
         {
-           foreach (Portal portal in FindObjectsOfType<Portal>())
+
+            foreach (Portal portal in FindObjectsOfType<Portal>())
             {
-                // only return the portal if it is not this portal and is the correct destination
-                if (portal == this)
-                {
-                    continue;
-                }
-                if (portal.destination != destination)
-                {
-                    continue;
-                }
+                if (portal == this) continue;
+                if (portal.destination != destination) continue;
 
                 return portal;
             }
 
-            return null; // couldn't find a portal
-
-        } // GetOtherPortal()
-    } // class Portal
-} // namespace
+            return null;
+        }
+    }
+}
