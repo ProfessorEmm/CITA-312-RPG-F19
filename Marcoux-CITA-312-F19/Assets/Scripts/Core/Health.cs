@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using RPG.Core;
+﻿using UnityEngine;
 using RPG.Saving;
 
-namespace RPG.Core
+namespace RPG.Core  
 {
     public class Health : MonoBehaviour, ISaveable
-        {
-        [SerializeField] float healthPoints = 100f;
+    {
+       [SerializeField] float healthPoints = 100f;
 
         bool isDead = false;
 
-
+        
         public bool IsDead()
         {
             return isDead;
@@ -21,10 +18,9 @@ namespace RPG.Core
         public void TakeDamage(float damage)
         {
             healthPoints = Mathf.Max(healthPoints - damage, 0);
-            if (healthPoints ==0)
+            if (healthPoints == 0)
             {
                 Die();
-
             }
         }
 
@@ -33,24 +29,25 @@ namespace RPG.Core
             if (isDead) return;
 
             isDead = true;
+            
             GetComponent<Animator>().SetTrigger("die");
             GetComponent<ActionScheduler>().CancelCurrentAction();
         }
-
         public object CaptureState()
         {
             return healthPoints;
         }
-
         public void RestoreState(object state)
         {
             healthPoints = (float)state;
+
+            // ensure that the dead stay dead when restoring a state
             if (healthPoints == 0)
             {
                 Die();
             }
         }
 
+    } // class Health
 
-    }
-}
+} // namespace
