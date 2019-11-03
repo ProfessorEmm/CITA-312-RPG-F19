@@ -70,14 +70,29 @@ namespace RPG.Combat
             GetComponent<Animator>().SetTrigger("attack");
         }
 
-        // this is an animation event
+        // this is an animation event from a package. Hit is the term for melee attacks
         void Hit()
         {
             if (target == null)
             {
                 return;
             }
-            target.TakeDamage(currentWeapon.GetDamage());
+
+            if (currentWeapon.HasProjectile())
+            {
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+            }
+            else
+            {
+                target.TakeDamage(currentWeapon.GetDamage());
+            }
+            
+        } // Hit()
+
+        // the animation event for the package we are using uses the term "Shoot". 
+        void Shoot()
+        {
+            Hit();
         }
 
         private bool GetIsInRange()
