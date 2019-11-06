@@ -145,11 +145,16 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultWeapon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 4572d7d3eaef6594386b1a29cb40d9e4,
+        type: 2}
     - target: {fileID: 7552228047967058114, guid: bce425f81850c074580fd28d65c80a6f,
         type: 3}
       propertyPath: uniqueIdentifier
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394697509, guid: bce425f81850c074580fd28d65c80a6f, type: 3}
+      propertyPath: maxSpeed
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3302458503153825012, guid: bce425f81850c074580fd28d65c80a6f,
         type: 3}

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 6097114987158654924, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Archer
       objectReference: {fileID: 0}
     - target: {fileID: 6097114987158654920, guid: a84c960a91e616a43b8314af1cc32996,
         type: 3}
@@ -67,5 +67,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1458205303982477688, guid: a84c960a91e616a43b8314af1cc32996,
+        type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 1254f13f047a20f41a9c4e843d0fd23b,
+        type: 2}
+    - target: {fileID: 2910881791448095859, guid: a84c960a91e616a43b8314af1cc32996,
+        type: 3}
+      propertyPath: chaseDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3273744776633683999, guid: a84c960a91e616a43b8314af1cc32996,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 01b2546c969fe814794af634cb4534f4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a84c960a91e616a43b8314af1cc32996, type: 3}

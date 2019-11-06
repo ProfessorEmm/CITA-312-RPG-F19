@@ -225,6 +225,10 @@ PrefabInstance:
       propertyPath: m_Speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1394697509, guid: bce425f81850c074580fd28d65c80a6f, type: 3}
+      propertyPath: maxSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3302458503153825012, guid: bce425f81850c074580fd28d65c80a6f,
         type: 3}
       propertyPath: m_IsKinematic
