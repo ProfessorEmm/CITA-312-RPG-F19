@@ -145,7 +145,7 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 4572d7d3eaef6594386b1a29cb40d9e4,
+      objectReference: {fileID: 11400000, guid: 117abe7e92d150e4e8718834f0fd0d51,
         type: 2}
     - target: {fileID: 7552228047967058114, guid: bce425f81850c074580fd28d65c80a6f,
         type: 3}
@@ -159,7 +159,7 @@ PrefabInstance:
     - target: {fileID: 3302458503153825012, guid: bce425f81850c074580fd28d65c80a6f,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bce425f81850c074580fd28d65c80a6f, type: 3}
